@@ -1,0 +1,36 @@
+img {
+  margin: 0.2rem;
+}
+
+.hide {
+  display: none;
+}
+
+br {
+  display: block;
+  margin-top: -0.2rem;
+}
+
+#container {
+  display: block;
+  position: fixed;
+}
+
+.sidebar {
+  position: fixed;
+  border-width: thin;
+  border-style: groove;
+  padding: 2rem;
+  margin-left: 75%;
+  text-align: center;
+}
+
+.sidebar > img {
+  margin: 1rem;
+}
+
+.active {
+  border-width: thick;
+  border-style: solid;
+  border-color: #337AB7;
+}
