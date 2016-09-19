@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\Fila;
+use common\models\Partida;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -144,7 +146,24 @@ class SiteController extends Controller
     public function actionGame()
     {
       if (!Yii::$app->user->isGuest) {
+
         // Has someone waiting?
+        if (($fila = Fila::find()->one()) !== null) {
+            // create match with this player and delete him from waiting list
+            $model = new Partida();
+            $model->id_user_1 = Yii::$app->user->getId();
+            $model->id_user_2 = $fila->user_id;
+            $model->save();
+            $fila->delete();
+            // return $model;
+            return $this->render('game', ['model' => $model]);
+        } else {
+            // put yourself in the list
+            $fila = new Fila();
+            $fila->user_id = Yii::$app->user->getId();
+            // $fila->save();
+            // throw new NotFoundHttpException('The requested page does not exist.');
+        }
         return $this->render('game');
       }
       return $this->actionLogin();
