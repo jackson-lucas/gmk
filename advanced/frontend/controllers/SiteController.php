@@ -152,7 +152,7 @@ class SiteController extends Controller
             // create match with this player and delete him from waiting list
             $model = new Partida();
             $model->id_user_1 = Yii::$app->user->getId();
-            $model->id_user_2 = $fila->user_id;
+            $model->id_user_2 = $fila->id;
             $model->save();
             $fila->delete();
             // return $model;
@@ -160,8 +160,8 @@ class SiteController extends Controller
         } else {
             // put yourself in the list
             $fila = new Fila();
-            $fila->user_id = Yii::$app->user->getId();
-            // $fila->save();
+            $fila->id = Yii::$app->user->getId();
+            $fila->save();
             // throw new NotFoundHttpException('The requested page does not exist.');
         }
         return $this->render('game');

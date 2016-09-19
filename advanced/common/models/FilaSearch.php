@@ -18,7 +18,7 @@ class FilaSearch extends Fila
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
+            [['id'], 'integer'],
         ];
     }
 
@@ -59,7 +59,6 @@ class FilaSearch extends Fila
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
         ]);
 
         return $dataProvider;

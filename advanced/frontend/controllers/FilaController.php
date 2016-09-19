@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace app\controllers;
 
 use Yii;
 use common\models\Fila;
@@ -115,7 +115,7 @@ class FilaController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Fila::find()->one()) !== null) {
+        if (($model = Fila::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
