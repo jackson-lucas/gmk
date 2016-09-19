@@ -144,6 +144,7 @@ class SiteController extends Controller
     public function actionGame()
     {
       if (!Yii::$app->user->isGuest) {
+        // Has someone waiting?
         return $this->render('game');
       }
       return $this->actionLogin();
