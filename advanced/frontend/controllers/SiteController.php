@@ -150,13 +150,14 @@ class SiteController extends Controller
         // Has someone waiting?
         if (($fila = Fila::find()->one()) !== null) {
             // create match with this player and delete him from waiting list
-            $model = new Partida();
-            $model->id_user_1 = Yii::$app->user->getId();
-            $model->id_user_2 = $fila->id;
-            $model->save();
+            $partida = new Partida();
+            $partida->id_user_1 = Yii::$app->user->getId();
+            $partida->id_user_2 = $fila->id;
+            $partida->vencedor = null;
+            $partida->save();
             $fila->delete();
             // return $model;
-            return $this->render('game', ['model' => $model]);
+            return $this->render('game', ['model' => $partida]);
         } else {
             // put yourself in the list
             $fila = new Fila();

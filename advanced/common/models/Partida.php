@@ -32,7 +32,7 @@ class Partida extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user_1', 'id_user_2', 'vencedor'], 'required'],
+            [['id_user_1', 'id_user_2'], 'required'],
             [['id_user_1', 'id_user_2', 'vencedor'], 'integer'],
             [['id_user_2'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user_2' => 'id']],
             [['id_user_1'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user_1' => 'id']],
